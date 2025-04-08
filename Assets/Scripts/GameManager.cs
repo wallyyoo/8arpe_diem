@@ -40,6 +40,10 @@ public class GameManager : MonoBehaviour
         {
             time += Time.deltaTime;
             timeTxt.text = time.ToString("N2");
+            if (time <= 30.0f)
+            {
+                timeTxt.enabled = true;
+            }
             if (time > 10.0f)
             {
                 endPanel.SetActive(true);

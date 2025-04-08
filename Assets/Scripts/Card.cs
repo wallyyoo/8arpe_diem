@@ -10,12 +10,14 @@ public class Card : MonoBehaviour
     public GameObject Front;
     public GameObject Back;
 
+    public SpriteRenderer frontImage;
+
     public Animator anim;
     
     public void setting(int number)
     {
-        idx = number;  
-
+        idx = number;
+        frontImage.sprite = Resources.Load<Sprite>($"rtan{idx}");
     }
    
     public void OpenCard()

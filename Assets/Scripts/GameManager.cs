@@ -32,14 +32,14 @@ public class GameManager : MonoBehaviour
     {
         if (firstCard.idx == secondCard.idx) //첫째 둘째 카드가 같다면
         {
-            firstCard.DestoryCard();
-            secondCard.DestoryCard();//파괴해라
+            firstCard.DestroyCard();
+            secondCard.DestroyCard();//파괴해라
         }
 
         else // 아니라면
         {
-            firstCard.closeCard();
-            secondCard.closeCard();// 닫아라
+            firstCard.CloseCard();
+            secondCard.CloseCard();// 닫아라
         }
         firstCard = null;
        secondCard = null; //카드 정보 초기화

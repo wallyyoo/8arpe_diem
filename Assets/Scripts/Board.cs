@@ -19,10 +19,11 @@ public class Board : MonoBehaviour
                 int k = i * 4 + j;
                 float x = j * 1.4f - 2.1f;
                 float y = i * 1.4f - 4.06f;
-                
-                GameObject go = Instantiate(card, this.transform);
-                go.transform.position = new Vector2(x, y);
+
+                GameObject go = Instantiate(card, new Vector2(0f, -3.5f), new Quaternion(0f, 0f, 0f, 0f), this.transform);
+                //go.transform.position = new Vector2(x, y);
                 go.GetComponent<Card>().setting(arr[k]);
+                go.GetComponent<Card>().GetNum(x, y);
             }
         }
     }

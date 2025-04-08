@@ -40,23 +40,24 @@ public class GameManager : MonoBehaviour
         {
             time += Time.deltaTime;
             timeTxt.text = time.ToString("N2");
+
         }
     }
-    public void Matched() //Ä«µå¸¦ ´ëÁ¶ÇÏ´Â ÇÔ¼ö
+    public void Matched() //ì¹´ë“œë¥¼ ëŒ€ì¡°í•˜ëŠ” í•¨ìˆ˜
     {
-        if (firstCard.idx == secondCard.idx) //Ã¹Â° µÑÂ° Ä«µå°¡ °°´Ù¸é
+        if (firstCard.idx == secondCard.idx) //ì²«ì§¸ ë‘˜ì§¸ ì¹´ë“œê°€ ê°™ë‹¤ë©´
         {
             firstCard.DestroyCard();
-            secondCard.DestroyCard();//ÆÄ±«ÇØ¶ó
+            secondCard.DestroyCard();//íŒŒê´´í•´ë¼
         }
 
-        else // ¾Æ´Ï¶ó¸é
+        else // ì•„ë‹ˆë¼ë©´
         {
             firstCard.CloseCard();
-            secondCard.CloseCard();// ´İ¾Æ¶ó
+            secondCard.CloseCard();// ë‹«ì•„ë¼
         }
         firstCard = null;
-        secondCard = null; //Ä«µå Á¤º¸ ÃÊ±âÈ­
+        secondCard = null; //ì¹´ë“œ ì •ë³´ ì´ˆê¸°í™”
     }
     public void GameOver()
     {
@@ -64,14 +65,14 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 0.0f;
         nowScore.text = time.ToString("N2");
 
-        // ÃÖ°íÁ¡¼ö°¡ ÀÖ´Ù¸é
+        // ìµœê³ ì ìˆ˜ê°€ ìˆë‹¤ë©´
         if (PlayerPrefs.HasKey(key))
         {
             float best = PlayerPrefs.GetFloat(key);
-            // ÃÖ°í Á¡¼ö < ÇöÀç Á¡¼ö
+            // ìµœê³  ì ìˆ˜ < í˜„ì¬ ì ìˆ˜
             if (best < time)
             {
-                //ÇöÀç Á¡¼ö¸¦ ÃÖ°í Á¡¼ö¿¡ ÀúÀåÇÑ´Ù.
+                //í˜„ì¬ ì ìˆ˜ë¥¼ ìµœê³  ì ìˆ˜ì— ì €ì¥í•œë‹¤.
                 PlayerPrefs.SetFloat(key, time);
                 bestScore.text = time.ToString("N2");
             }

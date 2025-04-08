@@ -22,9 +22,21 @@ public class Card : MonoBehaviour
    
     public void OpenCard()
     {
+
         anim.SetBool("isOpen", true);
         Front.SetActive(true);
-        Back.SetActive(false);   
+        Back.SetActive(false);
+
+        if (GameManager.instance.firstCard == null) 
+        {
+            GameManager.instance.firstCard = this;
+        }
+        else
+        {
+            GameManager.instance.secondCard = this;
+            GameManager.instance.Matched();
+        }
+
     }   
 
     public void DestroyCard()

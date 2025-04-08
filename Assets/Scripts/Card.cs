@@ -4,17 +4,9 @@ using UnityEngine;
 
 public class Card : MonoBehaviour
 {
-    int idx = 0;
-
-    public GameObject front;
-    public GameObject back;
-    void Start()
+    //카드에 번호 할당
+    public void CardNum(int i)
     {
-        
-    }
-
-    void Update()
-    {
-        
+        int cardNum = i;
     }
 }

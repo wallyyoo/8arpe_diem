@@ -22,7 +22,7 @@ public class Board : MonoBehaviour
                 
                 GameObject go = Instantiate(card, this.transform);
                 go.transform.position = new Vector2(x, y);
-                go.GetComponent<Card>().CardNum(arr[k]);
+                go.GetComponent<Card>().setting(arr[k]);
             }
         }
     }

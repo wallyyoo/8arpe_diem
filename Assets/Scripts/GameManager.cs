@@ -20,13 +20,13 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
     public void Matched() //카드를 대조하는 함수
     {
@@ -42,6 +42,6 @@ public class GameManager : MonoBehaviour
             secondCard.CloseCard();// 닫아라
         }
         firstCard = null;
-       secondCard = null; //카드 정보 초기화
+        secondCard = null; //카드 정보 초기화
     }
 }

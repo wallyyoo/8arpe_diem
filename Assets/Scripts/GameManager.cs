@@ -5,7 +5,19 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
-    // Start is called before the first frame update
+    public static GameManager instance;
+
+    public Card firstCard;
+    public Card secondCard;
+
+    private void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+        }
+    }
+
     void Start()
     {
         
@@ -15,5 +27,21 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         
+    }
+    public void Matched() //카드를 대조하는 함수
+    {
+        if (firstCard.idx == secondCard.idx) //첫째 둘째 카드가 같다면
+        {
+            firstCard.DestoryCard();
+            secondCard.DestoryCard();//파괴해라
+        }
+
+        else // 아니라면
+        {
+            firstCard.closeCard();
+            secondCard.closeCard();// 닫아라
+        }
+        firstCard = null;
+       secondCard = null; //카드 정보 초기화
     }
 }

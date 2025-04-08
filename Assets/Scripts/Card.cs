@@ -4,15 +4,9 @@ using UnityEngine;
 
 public class Card : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    //카드에 번호 할당
+    public void CardNum(int i)
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        int cardNum = i;
     }
 }

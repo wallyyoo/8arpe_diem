@@ -40,11 +40,6 @@ public class GameManager : MonoBehaviour
         {
             time += Time.deltaTime;
             timeTxt.text = time.ToString("N2");
-            if (time > 10.0f)
-            {
-                endPanel.SetActive(true);
-                Time.timeScale = 0.0f;
-            }
         }
     }
     public void Matched() //카드를 대조하는 함수

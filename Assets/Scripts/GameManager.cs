@@ -9,6 +9,16 @@ public class GameManager : MonoBehaviour
 
     public Card firstCard;
     public Card secondCard;
+    public GameObject endPanel;
+    public Text timeTxt;
+    public Text nowScore;
+    public Text bestScore;
+
+    bool isPlay = true;
+
+    float time = 0.0f;
+
+    string key = "bestScore";
 
     private void Awake()
     {
@@ -20,13 +30,22 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-
+        Time.timeScale = 1.0f;
     }
 
     // Update is called once per frame
     void Update()
     {
-
+        if (isPlay)
+        {
+            time += Time.deltaTime;
+            timeTxt.text = time.ToString("N2");
+            if (time > 10.0f)
+            {
+                endPanel.SetActive(true);
+                Time.timeScale = 0.0f;
+            }
+        }
     }
     public void Matched() //카드를 대조하는 함수
     {
@@ -43,5 +62,35 @@ public class GameManager : MonoBehaviour
         }
         firstCard = null;
         secondCard = null; //카드 정보 초기화
+    }
+    public void GameOver()
+    {
+        isPlay = false;
+        Time.timeScale = 0.0f;
+        nowScore.text = time.ToString("N2");
+
+        // 최고점수가 있다면
+        if (PlayerPrefs.HasKey(key))
+        {
+            float best = PlayerPrefs.GetFloat(key);
+            // 최고 점수 < 현재 점수
+            if (best < time)
+            {
+                //현재 점수를 최고 점수에 저장한다.
+                PlayerPrefs.SetFloat(key, time);
+                bestScore.text = time.ToString("N2");
+            }
+            else
+            {
+                bestScore.text = best.ToString("N2");
+            }
+        }
+        else
+        {
+            PlayerPrefs.SetFloat(key, time);
+            bestScore.text = time.ToString("N2");
+        }
+
+        endPanel.SetActive(true);
     }
 }

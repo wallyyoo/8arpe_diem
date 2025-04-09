@@ -9,7 +9,7 @@ public class SelectBtn : MonoBehaviour
 {
     public SpriteRenderer backImage;
 
-    public int idx2 = 1;
+    public int idx2 = 0;
 
 
 
@@ -22,8 +22,13 @@ public class SelectBtn : MonoBehaviour
 
     void Start()
     {
-        
-        
+        int[] arr = { 0, 1 };
+        arr = arr.OrderBy(x => Random.Range(0, 2)).ToArray();
+
+        for (int i = 0; i < 2; i++)
+        {
+            Instantiate(this);
+        }
         backImage.sprite = Resources.Load<Sprite>($"CardBack{idx2}");
     }
 

@@ -22,10 +22,7 @@ public class SelectBtn : MonoBehaviour
 
     void Start()
     {
-        for (int i = 0; i < 2; i++)
-        {
-            Instantiate(this, this.transform);
-        }
+        
         
         backImage.sprite = Resources.Load<Sprite>($"CardBack{idx2}");
     }

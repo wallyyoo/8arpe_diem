@@ -14,6 +14,8 @@ public class GameManager : MonoBehaviour
     public Text nowScore;
     public Text bestScore;
 
+    public int cardCount = 0;
+
     bool isPlay = true;
 
     float time = 0.0f;
@@ -49,6 +51,12 @@ public class GameManager : MonoBehaviour
         {
             firstCard.DestroyCard();
             secondCard.DestroyCard();//파괴해라
+            cardCount -= 2;
+            if(cardCount == 0)
+            {
+                endPanel.gameObject.SetActive(true);
+                Time.timeScale = 0.0f;
+            }
         }
 
         else // 아니라면

@@ -5,11 +5,11 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class SelectBtn : MonoBehaviour
+public class SelectBtn1 : MonoBehaviour
 {
     public SpriteRenderer backImage;
 
-    public int idx2 = 0;
+    public int idx2 = 1;
 
 
 

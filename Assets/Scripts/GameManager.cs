@@ -92,15 +92,26 @@ public class GameManager : MonoBehaviour
         {
             float best = PlayerPrefs.GetFloat(key);
             // 최고 점수 < 현재 점수
-            if (best > time && cardCount == 0)
+            if (cardCount == 0)
             {
-                //현재 점수를 최고 점수에 저장한다.
-                endTitle.text = "게임 클리어!";
-                PlayerPrefs.SetFloat(key, time);
-                bestScore.text = time.ToString("N2");
-                nowScore.text = time.ToString("N2");
-                Profile.SetActive(true);
-                endPanel.transform.position = new Vector2(380, 390);
+                if (best > time)
+                {
+                    //현재 점수를 최고 점수에 저장한다.
+                    PlayerPrefs.SetFloat(key, time);
+                    endTitle.text = "게임 클리어!";
+                    bestScore.text = best.ToString("N2");
+                    nowScore.text = time.ToString("N2");
+                    Profile.SetActive(true);
+                    endPanel.transform.position = new Vector2(380, 390);
+                }
+                else
+                {
+                    endTitle.text = "게임 클리어!";
+                    bestScore.text = best.ToString("N2");
+                    nowScore.text = time.ToString("N2");
+                    Profile.SetActive(true);
+                    endPanel.transform.position = new Vector2(380, 390);
+                }
             }
             else
             {
@@ -116,7 +127,7 @@ public class GameManager : MonoBehaviour
             {
                 endTitle.text = "게임 클리어!";
                 PlayerPrefs.SetFloat(key, time);
-                bestScore.text = time.ToString("N2");
+                bestScore.text = best.ToString("N2");
                 nowScore.text = time.ToString("N2");
                 Profile.SetActive(true);
                 endPanel.transform.position = new Vector2(380, 390);

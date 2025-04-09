@@ -20,7 +20,7 @@ public class GameManager : MonoBehaviour
 
     bool isPlay = true;
 
-    float time = 0.0f;
+    float time = -2.35f;
 
     string key = "bestScore";
     public int endtime;
@@ -37,6 +37,7 @@ public class GameManager : MonoBehaviour
     {
         Time.timeScale = 1.0f;
         //PlayerPrefs.DeleteKey(key);
+        timeTxt.enabled = false;
     }
 
     // Update is called once per frame
@@ -52,6 +53,11 @@ public class GameManager : MonoBehaviour
                 Time.timeScale = 0.0f;
                 GameOver();
             }
+        }
+
+        if(time >= 0.0f)
+        {
+            timeTxt.enabled = true;
         }
     }
     public void Matched() //카드를 대조하는 함수

@@ -15,7 +15,16 @@ public class Card : MonoBehaviour
 
     public Animator anim;
 
+    AudioSource audioSource;
+    public AudioClip flip;
+
     Vector2 vel = new Vector2(0, 0);
+
+    private void Start()
+    {
+        audioSource = GetComponent<AudioSource>();
+    }
+
     void Update()
     {
         Invoke("MoveCard", 0.8f);
@@ -28,7 +37,7 @@ public class Card : MonoBehaviour
    
     public void OpenCard()
     {
-
+        audioSource.PlayOneShot(flip);
         anim.SetBool("isOpen", true);
         Front.SetActive(true);
         Back.SetActive(false);

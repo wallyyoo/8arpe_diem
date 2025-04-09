@@ -43,6 +43,5 @@ public class UIBtn : MonoBehaviour
         {
             this.m_bPause = false;
         }
-        AudioListener.pause = m_bPause;
     }
 }

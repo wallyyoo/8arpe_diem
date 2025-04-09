@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using JetBrains.Annotations;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -13,6 +14,8 @@ public class GameManager : MonoBehaviour
     public Text timeTxt;
     public Text nowScore;
     public Text bestScore;
+    public GameObject Pause;
+    public GameObject Resume;
 
     public int cardCount = 0;
 

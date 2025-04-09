@@ -9,8 +9,6 @@ public class GameManager : MonoBehaviour
     public Card secondCard;
     public GameObject endPanel;
     public GameObject Profile;
-    public GameObject Resume;
-    public GameObject Pause;
     public Text timeTxt;
     public Text nowScore;
     public Text bestScore;

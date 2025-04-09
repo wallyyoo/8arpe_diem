@@ -22,19 +22,12 @@ public class SelectBtn : MonoBehaviour
 
     void Start()
     {
-        int[] arr = { 0, 1 };
-        arr = arr.OrderBy(x => Random.Range(0, 2)).ToArray();
-
-        for (int i = 0; i < 2; i++)
-        {
-            Instantiate(this, this.transform);
-        }
         backImage.sprite = Resources.Load<Sprite>($"CardBack{idx2}");
     }
 
     // Update is called once per frame
     void Update()
     {
-
+        
     }
 }

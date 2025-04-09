@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -22,8 +21,8 @@ public class SelectBtn : MonoBehaviour
 
     void Start()
     {
-        
 
+        idx2 = 0;
         backImage.sprite = Resources.Load<Sprite>($"CardBack{idx2}");
 
     }

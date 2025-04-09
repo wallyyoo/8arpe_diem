@@ -23,7 +23,7 @@ public class Card : MonoBehaviour
     public void setting(int number)
     {
         idx = number;
-        frontImage.sprite = Resources.Load<Sprite>($"rtan{idx}");
+        frontImage.sprite = Resources.Load<Sprite>($"parpe{idx}");
     }
    
     public void OpenCard()

@@ -511,6 +511,7 @@ MonoBehaviour:
   bestScore: {fileID: 3066862670264072083}
   endTitle: {fileID: 4305066642757565485}
   cardCount: 0
+  openedCard: 0
   endtime: 60
 --- !u!4 &343726383
 Transform:

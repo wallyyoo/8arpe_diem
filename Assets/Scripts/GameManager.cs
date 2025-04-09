@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -17,6 +15,7 @@ public class GameManager : MonoBehaviour
     public Text endTitle;
 
     public int cardCount = 0;
+    public int openedCard = 0;
 
     bool isPlay = true;
 
@@ -38,6 +37,7 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 1.0f;
         //PlayerPrefs.DeleteKey(key);
         timeTxt.enabled = false;
+        openedCard = 2;
     }
 
     // Update is called once per frame
@@ -45,7 +45,8 @@ public class GameManager : MonoBehaviour
     {
         if (isPlay)
         {
-            time += Time.deltaTime;
+            if (cardCount != 0)         // 카드를 다 뒤집기 전까지 시간이 올라감. 다 뒤집은 순간부터 멈춤.
+                time += Time.deltaTime;
             timeTxt.text = time.ToString("N2");
             if (time > endtime)
             {
@@ -55,9 +56,10 @@ public class GameManager : MonoBehaviour
             }
         }
 
-        if(time >= 0.0f)
+        if (time >= 0.0f && timeTxt.enabled == false)
         {
             timeTxt.enabled = true;
+            openedCard = 0;
         }
     }
     public void Matched() //카드를 대조하는 함수
@@ -67,10 +69,9 @@ public class GameManager : MonoBehaviour
             firstCard.DestroyCard();
             secondCard.DestroyCard();//파괴해라
             cardCount -= 2;
-            if(cardCount == 0)
+            if (cardCount == 0)
             {
-
-                Invoke("GameOver", 1.0f);
+                Invoke("GameOver", 2.0f);
             }
         }
 

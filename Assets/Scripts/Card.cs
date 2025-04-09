@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Security.Cryptography.X509Certificates;
 using UnityEngine;
 
 public class Card : MonoBehaviour
@@ -10,6 +7,7 @@ public class Card : MonoBehaviour
 
     public GameObject Front;
     public GameObject Back;
+    public GameObject Ptc;
 
     public SpriteRenderer frontImage;
 
@@ -34,9 +32,12 @@ public class Card : MonoBehaviour
         idx = number;
         frontImage.sprite = Resources.Load<Sprite>($"parpe{idx}");
     }
-   
+
     public void OpenCard()
     {
+
+        if (GameManager.instance.openedCard < 2)
+
         audioSource.PlayOneShot(flip);
         anim.SetBool("isOpen", true);
         Front.SetActive(true);
@@ -44,36 +45,47 @@ public class Card : MonoBehaviour
 
         if (GameManager.instance.firstCard == null) 
         {
-            GameManager.instance.firstCard = this;
-        }
-        else
-        {
-            GameManager.instance.secondCard = this;
-            GameManager.instance.Matched();
+            GameManager.instance.openedCard += 1;
+            anim.SetBool("isOpen", true);
+            Front.SetActive(true);
+            Back.SetActive(false);
+
+            if (GameManager.instance.firstCard == null)
+            {
+                GameManager.instance.firstCard = this;
+            }
+            else
+            {
+                GameManager.instance.secondCard = this;
+                GameManager.instance.Matched();
+            }
         }
 
-    }   
+    }
 
     public void DestroyCard()
     {
-        Invoke("DestroyCardInvoke", 1.0f);
+        Invoke("DestroyCardInvoke", 0.5f);
     }
 
     void DestroyCardInvoke()
     {
         Destroy(gameObject);
+        Instantiate(Ptc, transform.position , transform.rotation);
+        GameManager.instance.openedCard = 0;
     }
 
-   public void CloseCard()
+    public void CloseCard()
     {
-        Invoke("CloseCardInvoke", 1.0f);
+        Invoke("CloseCardInvoke", 0.5f);
     }
 
     void CloseCardInvoke()
     {
-        anim.SetBool("isOpen",false);
+        anim.SetBool("isOpen", false);
         Front.SetActive(false);
         Back.SetActive(true);
+        GameManager.instance.openedCard = 0;
     }
 
     public void GetNum(float x, float y)

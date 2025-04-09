@@ -21,7 +21,7 @@ public class GameManager : MonoBehaviour
 
     float time = -2.35f;
 
-    string key = "bestScore";
+    public string key = "bestScore";
     public int endtime;
 
     private void Awake()
@@ -99,6 +99,7 @@ public class GameManager : MonoBehaviour
                 {
                     //현재 점수를 최고 점수에 저장한다.
                     PlayerPrefs.SetFloat(key, time);
+                    best = PlayerPrefs.GetFloat(key);
                     endTitle.text = "게임 클리어!";
                     bestScore.text = best.ToString("N2");
                     nowScore.text = time.ToString("N2");
@@ -128,6 +129,7 @@ public class GameManager : MonoBehaviour
             {
                 endTitle.text = "게임 클리어!";
                 PlayerPrefs.SetFloat(key, time);
+                best = PlayerPrefs.GetFloat(key);
                 bestScore.text = best.ToString("N2");
                 nowScore.text = time.ToString("N2");
                 Profile.SetActive(true);

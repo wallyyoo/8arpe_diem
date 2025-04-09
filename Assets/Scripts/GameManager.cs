@@ -9,10 +9,18 @@ public class GameManager : MonoBehaviour
     public Card secondCard;
     public GameObject endPanel;
     public GameObject Profile;
+    public GameObject Resume;
+    public GameObject Pause;
     public Text timeTxt;
     public Text nowScore;
     public Text bestScore;
     public Text endTitle;
+
+    AudioSource audioSource;
+    public AudioClip success;
+    public AudioClip fail;
+    public AudioClip congrate;
+    public AudioClip game_over;
 
     public int cardCount = 0;
     public int openedCard = 0;
@@ -37,8 +45,16 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 1.0f;
         //PlayerPrefs.DeleteKey(key);
         timeTxt.enabled = false;
+
         openedCard = 2;
     }
+
+        
+        audioSource = GetComponent<AudioSource>();
+       AudioManager.instance.audioSource.Play();
+            }
+
+
 
     // Update is called once per frame
     void Update()
@@ -66,10 +82,16 @@ public class GameManager : MonoBehaviour
     {
         if (firstCard.idx == secondCard.idx) //첫째 둘째 카드가 같다면
         {
+            StartCoroutine(PlayDelayedSound(success));
             firstCard.DestroyCard();
             secondCard.DestroyCard();//파괴해라
             cardCount -= 2;
+
             if (cardCount == 0)
+
+
+            if(cardCount == 0)
+
             {
                 Invoke("GameOver", 2.0f);
             }
@@ -77,17 +99,23 @@ public class GameManager : MonoBehaviour
 
         else // 아니라면
         {
+            StartCoroutine(PlayDelayedSound(fail));
             firstCard.CloseCard();
             secondCard.CloseCard();// 닫아라
         }
         firstCard = null;
         secondCard = null; //카드 정보 초기화
     }
+
     public void GameOver()
     {
+        AudioManager.instance.audioSource.Stop();
+
         isPlay = false;
         Time.timeScale = 0.0f;
         endPanel.gameObject.SetActive(true);
+
+
         // 최고점수가 있다면
         if (PlayerPrefs.HasKey(key))
         {
@@ -95,9 +123,14 @@ public class GameManager : MonoBehaviour
             // 최고 점수 < 현재 점수
             if (cardCount == 0)
             {
+
                 endTitle.text = "게임 클리어!";
                 Profile.SetActive(true);
                 endPanel.transform.position = new Vector2(380, 390);
+
+                audioSource.PlayOneShot(congrate);
+              
+
                 if (best > time)
                 {
                     //현재 점수를 최고 점수에 저장한다.
@@ -110,9 +143,12 @@ public class GameManager : MonoBehaviour
                     bestScore.text = best.ToString("N2");
                     nowScore.text = time.ToString("N2");
                 }
+                
             }
             else
             {
+                audioSource.PlayOneShot(game_over);
+
                 endTitle.text = "게임 오버";
                 bestScore.text = best.ToString("N2");
                 nowScore.text = "시간 초과";
@@ -123,6 +159,8 @@ public class GameManager : MonoBehaviour
             float best = PlayerPrefs.GetFloat(key);
             if (cardCount == 0)
             {
+                audioSource.PlayOneShot(congrate);
+
                 endTitle.text = "게임 클리어!";
                 PlayerPrefs.SetFloat(key, time);
                 bestScore.text = time.ToString("N2");
@@ -132,12 +170,19 @@ public class GameManager : MonoBehaviour
             }
             else
             {
+                audioSource.PlayOneShot(game_over);
+
                 endTitle.text = "게임 오버";
                 bestScore.text = best.ToString("N2");
                 nowScore.text = "시간 초과";
             }
         }
-
         endPanel.SetActive(true);
+    }
+
+    public IEnumerator PlayDelayedSound(AudioClip clip)
+    {
+        yield return new WaitForSeconds(0.6f);
+        audioSource.PlayOneShot(clip);
     }
 }

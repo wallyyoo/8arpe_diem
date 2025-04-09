@@ -8,9 +8,5 @@ public class RetryButton : MonoBehaviour
     {
         SceneManager.LoadScene("MainScene");
     }
-    public void ScoreReset()
-    {
-        PlayerPrefs.DeleteKey($"{GameManager.instance.key}");
-    }
 }
 

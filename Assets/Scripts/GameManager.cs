@@ -10,9 +10,11 @@ public class GameManager : MonoBehaviour
     public Card firstCard;
     public Card secondCard;
     public GameObject endPanel;
+    public GameObject Profile;
     public Text timeTxt;
     public Text nowScore;
     public Text bestScore;
+    public Text endTitle;
 
     public int cardCount = 0;
 
@@ -21,6 +23,7 @@ public class GameManager : MonoBehaviour
     float time = 0.0f;
 
     string key = "bestScore";
+    public int endtime;
 
     private void Awake()
     {
@@ -33,6 +36,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         Time.timeScale = 1.0f;
+        //PlayerPrefs.DeleteKey(key);
     }
 
     // Update is called once per frame
@@ -42,7 +46,12 @@ public class GameManager : MonoBehaviour
         {
             time += Time.deltaTime;
             timeTxt.text = time.ToString("N2");
-
+            if (time > endtime)
+            {
+                endPanel.gameObject.SetActive(true);
+                Time.timeScale = 0.0f;
+                GameOver();
+            }
         }
     }
     public void Matched() //카드를 대조하는 함수
@@ -54,9 +63,8 @@ public class GameManager : MonoBehaviour
             cardCount -= 2;
             if(cardCount == 0)
             {
-                endPanel.gameObject.SetActive(true);
-                Time.timeScale = 0.0f;
-                GameOver();
+
+                Invoke("GameOver", 1.0f);
             }
         }
 
@@ -72,28 +80,47 @@ public class GameManager : MonoBehaviour
     {
         isPlay = false;
         Time.timeScale = 0.0f;
-        nowScore.text = time.ToString("N2");
-
+        endPanel.gameObject.SetActive(true);
         // 최고점수가 있다면
         if (PlayerPrefs.HasKey(key))
         {
             float best = PlayerPrefs.GetFloat(key);
             // 최고 점수 < 현재 점수
-            if (best > time)
+            if (best > time && cardCount == 0)
             {
                 //현재 점수를 최고 점수에 저장한다.
+                endTitle.text = "게임 클리어!";
                 PlayerPrefs.SetFloat(key, time);
                 bestScore.text = time.ToString("N2");
+                nowScore.text = time.ToString("N2");
+                Profile.SetActive(true);
+                endPanel.transform.position = new Vector2(380, 390);
             }
             else
             {
+                endTitle.text = "게임 오버";
                 bestScore.text = best.ToString("N2");
+                nowScore.text = "시간 초과";
             }
         }
         else
         {
-            PlayerPrefs.SetFloat(key, time);
-            bestScore.text = time.ToString("N2");
+            float best = PlayerPrefs.GetFloat(key);
+            if (cardCount == 0)
+            {
+                endTitle.text = "게임 클리어!";
+                PlayerPrefs.SetFloat(key, time);
+                bestScore.text = time.ToString("N2");
+                nowScore.text = time.ToString("N2");
+                Profile.SetActive(true);
+                endPanel.transform.position = new Vector2(380, 390);
+            }
+            else
+            {
+                endTitle.text = "게임 오버";
+                bestScore.text = best.ToString("N2");
+                nowScore.text = "시간 초과";
+            }
         }
 
         endPanel.SetActive(true);

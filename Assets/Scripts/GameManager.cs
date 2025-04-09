@@ -56,6 +56,7 @@ public class GameManager : MonoBehaviour
             {
                 endPanel.gameObject.SetActive(true);
                 Time.timeScale = 0.0f;
+                GameOver();
             }
         }
 
@@ -78,7 +79,7 @@ public class GameManager : MonoBehaviour
         {
             float best = PlayerPrefs.GetFloat(key);
             // 최고 점수 < 현재 점수
-            if (best < time)
+            if (best > time)
             {
                 //현재 점수를 최고 점수에 저장한다.
                 PlayerPrefs.SetFloat(key, time);

@@ -10,6 +10,7 @@ public class Card : MonoBehaviour
 
     public GameObject Front;
     public GameObject Back;
+    public GameObject Ptc;
 
     public SpriteRenderer frontImage;
 
@@ -67,6 +68,7 @@ public class Card : MonoBehaviour
     {
         Destroy(gameObject);
         GameManager.instance.OpenedCard = 0;
+        Instantiate(Ptc, transform.position, transform.rotation);
     }
 
    public void CloseCard()

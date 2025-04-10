@@ -462,6 +462,7 @@ MonoBehaviour:
   Back: {fileID: 3546221370725374469}
   frontImage: {fileID: 4704255414271848150}
   anim: {fileID: 4201907613993048829}
+  flip: {fileID: 8300000, guid: a43ba92ce22e06b4cb6ec17e677d51dd, type: 3}
 --- !u!95 &4201907613993048829
 Animator:
   serializedVersion: 5

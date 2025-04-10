@@ -513,10 +513,10 @@ MonoBehaviour:
   nowScore: {fileID: 4113129768573970244}
   bestScore: {fileID: 3066862670264072083}
   endTitle: {fileID: 4305066642757565485}
-  success: {fileID: 8300000, guid: 0931255786d2a2342b9404f9c53ef8e8, type: 3}
-  fail: {fileID: 8300000, guid: 1b79abbb9d46df347aa02302d16cd1f7, type: 3}
-  congrate: {fileID: 8300000, guid: 844b7caa57dde17439fbbd584d44b82b, type: 3}
-  game_over: {fileID: 8300000, guid: 260f593012a21d94fb3ab490cef9cb4b, type: 3}
+  success: {fileID: 8300000, guid: bab7d6d3aeed3dd4180d0dcf13129097, type: 3}
+  fail: {fileID: 8300000, guid: 7ca4d8ae99014794bb7e4e749c7bb81a, type: 3}
+  congrate: {fileID: 8300000, guid: 2f2c4089d4241b840b24d33cf70a4b66, type: 3}
+  game_over: {fileID: 8300000, guid: 908e98e557b92124d95e19c7fb61399c, type: 3}
   cardCount: 0
   endtime: 60
 --- !u!4 &343726383
@@ -874,7 +874,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   audioSource: {fileID: 944264579}
-  bgm: {fileID: 8300000, guid: 7e3a8ad56b8e77b4a8f2f73d2e476f17, type: 3}
+  bgm: {fileID: 8300000, guid: 7f29e816ce450394aba2f69c1731759c, type: 3}
 --- !u!4 &944264578
 Transform:
   m_ObjectHideFlags: 0

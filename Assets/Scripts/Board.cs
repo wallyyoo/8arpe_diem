@@ -22,6 +22,8 @@ public class Board : MonoBehaviour
                 float y = i * 1.4f - 4.06f;
 
                 GameObject go = Instantiate(card, new Vector2(0f, -3.5f), new Quaternion(0f, 0f, 0f, 0f), this.transform);
+                GameManager.instance.Cards[k] = go;
+
                 //go.transform.position = new Vector2(x, y);
                 go.GetComponent<Card>().setting(arr[k]);
                 go.GetComponent<Card>().GetNum(x, y);

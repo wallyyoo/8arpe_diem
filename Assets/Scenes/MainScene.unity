@@ -601,9 +601,9 @@ MonoBehaviour:
   congrate: {fileID: 8300000, guid: 2f2c4089d4241b840b24d33cf70a4b66, type: 3}
   game_over: {fileID: 8300000, guid: 908e98e557b92124d95e19c7fb61399c, type: 3}
   cardCount: 0
+  OpenedCard: 0
   key: bestScore
   endtime: 60
-  OpenedCard: 0
 --- !u!4 &343726383
 Transform:
   m_ObjectHideFlags: 0
@@ -2276,6 +2276,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1989daa62f22f13439bb525088e2db01, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Resume: {fileID: 2266263486656488887}
+  Pause: {fileID: 3931015835698194452}
 --- !u!222 &1038522012742884861
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2453,7 +2455,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2733706368617852529
 RectTransform:
   m_ObjectHideFlags: 0

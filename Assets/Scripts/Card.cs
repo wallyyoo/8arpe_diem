@@ -39,7 +39,7 @@ public class Card : MonoBehaviour
    
     public void OpenCard()
     {
-        if (GameManager.instance.OpenedCard < 2 && GameManager.instance.timeTxt.enabled == true)
+        if (GameManager.instance.OpenedCard < 2 && GameManager.instance.timeTxt.enabled == true && Time.timeScale != 0)
         {
             GameManager.instance.OpenedCard += 1;
             audioSource.PlayOneShot(flip);

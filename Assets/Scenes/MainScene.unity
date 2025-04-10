@@ -518,7 +518,9 @@ MonoBehaviour:
   congrate: {fileID: 8300000, guid: 844b7caa57dde17439fbbd584d44b82b, type: 3}
   game_over: {fileID: 8300000, guid: 260f593012a21d94fb3ab490cef9cb4b, type: 3}
   cardCount: 0
+  key: bestScore
   endtime: 60
+  OpenedCard: 0
 --- !u!4 &343726383
 Transform:
   m_ObjectHideFlags: 0

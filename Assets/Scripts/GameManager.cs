@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -31,8 +30,9 @@ public class GameManager : MonoBehaviour
     float time = -2.35f;
 
     string key = "bestScore";
+    
     public int endtime;
-
+    public int OpenedCard;
     private void Awake()
     {
         if (instance == null)
@@ -46,10 +46,10 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 1.0f;
         //PlayerPrefs.DeleteKey(key);
         timeTxt.enabled = false;
-        
+
         audioSource = GetComponent<AudioSource>();
-       AudioManager.instance.audioSource.Play();
-            }
+        AudioManager.instance.audioSource.Play();
+    }
 
 
     // Update is called once per frame
@@ -57,7 +57,8 @@ public class GameManager : MonoBehaviour
     {
         if (isPlay)
         {
-            time += Time.deltaTime;
+            if (cardCount != 0)
+                time += Time.deltaTime;
             timeTxt.text = time.ToString("N2");
             if (time > endtime)
             {
@@ -67,7 +68,7 @@ public class GameManager : MonoBehaviour
             }
         }
 
-        if(time >= 0.0f)
+        if (time >= 0.0f)
         {
             timeTxt.enabled = true;
         }
@@ -81,7 +82,7 @@ public class GameManager : MonoBehaviour
             secondCard.DestroyCard();//파괴해라
             cardCount -= 2;
 
-            if(cardCount == 0)
+            if (cardCount == 0)
             {
 
                 Invoke("GameOver", 1.0f);
@@ -115,7 +116,7 @@ public class GameManager : MonoBehaviour
             if (cardCount == 0)
             {
                 audioSource.PlayOneShot(congrate);
-              
+
                 if (best > time)
                 {
                     //현재 점수를 최고 점수에 저장한다.
@@ -134,7 +135,7 @@ public class GameManager : MonoBehaviour
                     Profile.SetActive(true);
                     endPanel.transform.position = new Vector2(380, 390);
                 }
-                
+
             }
             else
             {

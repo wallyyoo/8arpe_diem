@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -7,7 +6,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
 
-    public GameObject[] Cards;
+    public GameObject[] Cards; //
     public Card firstCard;
     public Card secondCard;
     public GameObject endPanel;
@@ -18,10 +17,10 @@ public class GameManager : MonoBehaviour
     public Text nowScore;
     public Text bestScore;
     public Text endTitle;
-    public Text hint2Btn;
+    public Text hint2Btn;//
 
-    public GameObject hint2;
-    public int[] Hint2Num;
+    public GameObject hint2;//
+    public int[] Hint2Num;//
 
     AudioSource audioSource;
     public AudioClip success;
@@ -30,13 +29,14 @@ public class GameManager : MonoBehaviour
     public AudioClip game_over;
 
     public int cardCount = 0;
+    public int OpenedCard = 0;
 
     bool isPlay = true;
     bool isHint2;
 
     float time = -2.35f;
 
-    string key = "bestScore";
+    public string key = "bestScore";
     public int endtime;
 
     private void Awake()
@@ -52,7 +52,7 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 1.0f;
         //PlayerPrefs.DeleteKey(key);
         timeTxt.enabled = false;
-        
+
         audioSource = GetComponent<AudioSource>();
         AudioManager.instance.audioSource.Play();
 
@@ -67,7 +67,8 @@ public class GameManager : MonoBehaviour
     {
         if (isPlay)
         {
-            time += Time.deltaTime;
+            if (cardCount != 0)
+                time += Time.deltaTime;
             timeTxt.text = time.ToString("N2");
             if (time > endtime)
             {
@@ -77,7 +78,7 @@ public class GameManager : MonoBehaviour
             }
         }
 
-        if(time >= 0.0f)
+        if (time >= 0.0f)
         {
             timeTxt.enabled = true;
         }
@@ -103,7 +104,7 @@ public class GameManager : MonoBehaviour
             secondCard.DestroyCard();//파괴해라
             cardCount -= 2;
 
-            if(cardCount == 0)
+            if (cardCount == 0)
             {
 
                 Invoke("GameOver", 1.0f);
@@ -137,13 +138,13 @@ public class GameManager : MonoBehaviour
             if (cardCount == 0)
             {
                 audioSource.PlayOneShot(congrate);
-              
+
                 if (best > time)
                 {
                     //현재 점수를 최고 점수에 저장한다.
                     PlayerPrefs.SetFloat(key, time);
                     endTitle.text = "게임 클리어!";
-                    bestScore.text = best.ToString("N2");
+                    bestScore.text = time.ToString("N2");
                     nowScore.text = time.ToString("N2");
                     Profile.SetActive(true);
                     endPanel.transform.position = new Vector2(380, 390);
@@ -156,7 +157,7 @@ public class GameManager : MonoBehaviour
                     Profile.SetActive(true);
                     endPanel.transform.position = new Vector2(380, 390);
                 }
-                
+
             }
             else
             {
@@ -176,7 +177,7 @@ public class GameManager : MonoBehaviour
 
                 endTitle.text = "게임 클리어!";
                 PlayerPrefs.SetFloat(key, time);
-                bestScore.text = best.ToString("N2");
+                bestScore.text = time.ToString("N2");
                 nowScore.text = time.ToString("N2");
                 Profile.SetActive(true);
                 endPanel.transform.position = new Vector2(380, 390);

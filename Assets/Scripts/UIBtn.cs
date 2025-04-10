@@ -35,14 +35,17 @@ public class UIBtn : MonoBehaviour
 
     public void Paused()
     {
-        if (m_bPause == false)
+        if (GameManager.instance.cardCount != 0)
         {
-            this.m_bPause = true;
+            if (m_bPause == false)
+            {
+                this.m_bPause = true;
+            }
+            else
+            {
+                this.m_bPause = false;
+            }
+            AudioListener.pause = m_bPause;
         }
-        else
-        {
-            this.m_bPause = false;
-        }
-        AudioListener.pause = m_bPause;
     }
 }

@@ -1,3 +1,5 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -23,13 +25,12 @@ public class GameManager : MonoBehaviour
     public AudioClip game_over;
 
     public int cardCount = 0;
-    public int openedCard = 0;
 
     bool isPlay = true;
 
     float time = -2.35f;
 
-    public string key = "bestScore";
+    string key = "bestScore";
     public int endtime;
 
     private void Awake()
@@ -45,15 +46,10 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 1.0f;
         //PlayerPrefs.DeleteKey(key);
         timeTxt.enabled = false;
-
-        openedCard = 2;
-    }
-
         
         audioSource = GetComponent<AudioSource>();
        AudioManager.instance.audioSource.Play();
             }
-
 
 
     // Update is called once per frame
@@ -61,8 +57,7 @@ public class GameManager : MonoBehaviour
     {
         if (isPlay)
         {
-            if (cardCount != 0)         // 카드를 다 뒤집기 전까지 시간이 올라감. 다 뒤집은 순간부터 멈춤.
-                time += Time.deltaTime;
+            time += Time.deltaTime;
             timeTxt.text = time.ToString("N2");
             if (time > endtime)
             {
@@ -72,10 +67,9 @@ public class GameManager : MonoBehaviour
             }
         }
 
-        if (time >= 0.0f && timeTxt.enabled == false)
+        if(time >= 0.0f)
         {
             timeTxt.enabled = true;
-            openedCard = 0;
         }
     }
     public void Matched() //카드를 대조하는 함수
@@ -87,13 +81,10 @@ public class GameManager : MonoBehaviour
             secondCard.DestroyCard();//파괴해라
             cardCount -= 2;
 
-            if (cardCount == 0)
-
-
             if(cardCount == 0)
-
             {
-                Invoke("GameOver", 2.0f);
+
+                Invoke("GameOver", 1.0f);
             }
         }
 
@@ -123,25 +114,25 @@ public class GameManager : MonoBehaviour
             // 최고 점수 < 현재 점수
             if (cardCount == 0)
             {
-
-                endTitle.text = "게임 클리어!";
-                Profile.SetActive(true);
-                endPanel.transform.position = new Vector2(380, 390);
-
                 audioSource.PlayOneShot(congrate);
               
-
                 if (best > time)
                 {
                     //현재 점수를 최고 점수에 저장한다.
                     PlayerPrefs.SetFloat(key, time);
-                    bestScore.text = time.ToString("N2");
+                    endTitle.text = "게임 클리어!";
+                    bestScore.text = best.ToString("N2");
                     nowScore.text = time.ToString("N2");
+                    Profile.SetActive(true);
+                    endPanel.transform.position = new Vector2(380, 390);
                 }
                 else
                 {
+                    endTitle.text = "게임 클리어!";
                     bestScore.text = best.ToString("N2");
                     nowScore.text = time.ToString("N2");
+                    Profile.SetActive(true);
+                    endPanel.transform.position = new Vector2(380, 390);
                 }
                 
             }
@@ -163,7 +154,7 @@ public class GameManager : MonoBehaviour
 
                 endTitle.text = "게임 클리어!";
                 PlayerPrefs.SetFloat(key, time);
-                bestScore.text = time.ToString("N2");
+                bestScore.text = best.ToString("N2");
                 nowScore.text = time.ToString("N2");
                 Profile.SetActive(true);
                 endPanel.transform.position = new Vector2(380, 390);

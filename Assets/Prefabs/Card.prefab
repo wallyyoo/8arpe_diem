@@ -461,7 +461,6 @@ MonoBehaviour:
   - 0
   Front: {fileID: 7727256335523267978}
   Back: {fileID: 3546221370725374469}
-  Ptc: {fileID: 2681812231025352608, guid: 9df0724fa0e65804f82874a2608a19d0, type: 3}
   frontImage: {fileID: 4704255414271848150}
   anim: {fileID: 4201907613993048829}
   flip: {fileID: 8300000, guid: f692b6b01385090479f73757f174f3b7, type: 3}

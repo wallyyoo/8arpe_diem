@@ -418,7 +418,7 @@ GameObject:
   - component: {fileID: 3314251497086562997}
   - component: {fileID: 7789919552441157979}
   - component: {fileID: 4201907613993048829}
-  - component: {fileID: 8903371635045583655}
+  - component: {fileID: 6837172817816554708}
   m_Layer: 0
   m_Name: Card
   m_TagString: Untagged
@@ -464,7 +464,7 @@ MonoBehaviour:
   Ptc: {fileID: 3195811465445110528, guid: 9df0724fa0e65804f82874a2608a19d0, type: 3}
   frontImage: {fileID: 4704255414271848150}
   anim: {fileID: 4201907613993048829}
-  flip: {fileID: 8300000, guid: f692b6b01385090479f73757f174f3b7, type: 3}
+  flip: {fileID: 8300000, guid: a43ba92ce22e06b4cb6ec17e677d51dd, type: 3}
 --- !u!95 &4201907613993048829
 Animator:
   serializedVersion: 5
@@ -486,7 +486,7 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!82 &8903371635045583655
+--- !u!82 &6837172817816554708
 AudioSource:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

@@ -200,22 +200,21 @@ public class GameManager : MonoBehaviour
         audioSource.PlayOneShot(clip);
     }
 
-    public void Hint2()
+    public void Hint2()                     
     {
         StopAllCoroutines();
         hint2.GetComponent<SpriteRenderer>().color = new Color(0.1698113f, 0.1319729f, 0.1273585f, 1.0f);
         int[] arr = new int[2];
-        for (int i = 0; i < 20; i++)
+        for (int i = 0; i < 20; i++)        //찾을 카드 선정, 파괴되지 않은
         {
-            if (Cards[i] == null)
+            if (Cards[i] == null)               //검색한 카드가 null일경우 (이미 파괴되었을 경우) 패스
             {
-
                 continue;
             }
-            else if (Cards[i] != null)
+            else if (Cards[i] != null)          //검색한 카드가 파괴되지 않았을 경우
             {
                 int num = Cards[i].GetComponent<Card>().idx;
-                arr = Hint2Find(num, i);
+                arr = Hint2Find(num, i);            //선정한 카드의 번호, idx값 전달   / 리턴값을 배열arr에 저장
                 break;
             }
         }
@@ -224,15 +223,15 @@ public class GameManager : MonoBehaviour
         Hint2Destroy(arr);
     }
 
-    int[] Hint2Find(int num, int i)
+    int[] Hint2Find(int num, int i)         //받아온 번호와 idx값을 기반으로 같은 idx값을 가진 카드의 번호를 찾는다, 찾은 번호를 배열에 저장
     {
         int[] arr = new int[2];
-        arr[0] = i;
+        arr[0] = i;                         //배열의 1번째 값은 선정한 카드의 번호
         for (int j = i + 1; j < 20; j++)
         {
             if (Cards[j] != null && Cards[j].GetComponent<Card>().idx == num)
             {
-                arr[1] = j;
+                arr[1] = j;                 //배열의 2번째 값은 검색한 카드의 번호
                 return arr;
             }
         }

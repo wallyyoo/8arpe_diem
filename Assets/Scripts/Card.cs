@@ -39,6 +39,8 @@ public class Card : MonoBehaviour
    
     public void OpenCard()
     {
+        // 다중 카드 선택 방지 조건문
+        // 카드가 2개 미만으로 뒤집어져있을때 && 게임 시작후 펼쳐지고 타이머가 활성화 상태일 때 && 일시정지가 아닌 경우에
         if (GameManager.instance.OpenedCard < 2 && GameManager.instance.timeTxt.enabled == true && Time.timeScale != 0)
         {
             GameManager.instance.OpenedCard += 1;

@@ -6,7 +6,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
 
-    public GameObject[] Cards; //
+    public GameObject[] Cards;
     public Card firstCard;
     public Card secondCard;
     public GameObject endPanel;
@@ -17,10 +17,10 @@ public class GameManager : MonoBehaviour
     public Text nowScore;
     public Text bestScore;
     public Text endTitle;
-    public Text hint2Btn;//
+    public Text hint2Btn;
 
-    public GameObject hint2;//
-    public int[] Hint2Num;//
+    public GameObject hint2;
+    public int[] Hint2Num;
 
     AudioSource audioSource;
     public AudioClip success;
@@ -29,7 +29,7 @@ public class GameManager : MonoBehaviour
     public AudioClip game_over;
 
     public int cardCount = 0;
-    public int OpenedCard = 0;
+    public int OpenedCard = 0; // 다중 카드 선택 방지를 위한 변수
 
     bool isPlay = true;
     bool isHint2;
